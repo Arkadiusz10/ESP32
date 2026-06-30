@@ -1,13 +1,33 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="UTF-8">
-<title>Moja strona</title>
+  <meta charset="UTF-8">
+  <title>Smart Home ESP32</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>Siema 😎</h1>
-<p>To działa z GitHub Pages.</p>
+<div class="container">
 
+  <h1>🏠 Smart Home Panel</h1>
+
+  <div class="card">
+    <h2>🌡 Temperatura</h2>
+    <p id="temp">-- °C</p>
+  </div>
+
+  <div class="card">
+    <h2>💧 Wilgotność</h2>
+    <p id="hum">-- %</p>
+  </div>
+
+  <div class="card">
+    <h2>📡 Status</h2>
+    <p id="status">Ładowanie...</p>
+  </div>
+
+</div>
+
+<script src="app.js"></script>
 </body>
 </html>
