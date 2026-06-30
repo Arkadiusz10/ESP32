@@ -1,17 +1,23 @@
-const dbUrl = "https://esp32-serv-e444c-default-rtdb.europe-west1.firebasedatabase.app/";
+const dataUrl = "https://arkadiusz10.github.io/ESP32/data/data.json";
 
 async function loadData() {
-  const res = await fetch(dbUrl + "/esp32.json");
-  const data = await res.json();
+  try {
+    const res = await fetch(dataUrl + "?t=" + Date.now()); // cache bypass
+    const data = await res.json();
 
-  document.getElementById("temp").innerText =
-    data.temperature.toFixed(1) + " °C";
+    document.getElementById("temp").innerText =
+      Number(data.temperature).toFixed(1) + " °C";
 
-  document.getElementById("hum").innerText =
-    data.humidity.toFixed(0) + " %";
+    document.getElementById("hum").innerText =
+      Number(data.humidity).toFixed(0) + " %";
 
-  document.getElementById("status").innerText =
-    "RSSI: " + data.rssi + " dBm";
+    document.getElementById("status").innerText =
+      "RSSI: " + data.rssi + " dBm";
+
+  } catch (e) {
+    document.getElementById("status").innerText =
+      "Błąd pobierania danych";
+  }
 }
 
 setInterval(loadData, 2000);
